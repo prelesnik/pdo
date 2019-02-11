@@ -1,10 +1,10 @@
 <?php
 
-require '/home/prelesn/config.php';
+require '/home/mprelesn/config.php';
 //CONNECT TO DB
 try {
     //instantiate a db object
-    $dbh = new PDO("mysql:dbname=mprelesn_grc", "prelesn", "u5ny1Y6m:*BFP6");
+    $dbh = new PDO(DB_DSN, DB_USERNAME, DB_PASSWORD);
     echo "Connected to database!";
 }
 catch (PDOException $e)
@@ -22,4 +22,6 @@ $statement ->bindParam(':name', $name, PDO::PARAM_STR);
 $statement ->bindParam(':color', $color, PDO::PARAM_STR);
 
 //execute
-$statement->execute();
+//$statement->execute();
+$id = $dbh ->lastInsertId();
+echo "<p>Pet $id inserted successfully.</p>";
